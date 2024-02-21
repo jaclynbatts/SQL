@@ -1,0 +1,62 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE famous_people (
+id INTEGER PRIMARY KEY,
+name TEXT,
+industry TEXT);
+
+INSERT INTO famous_people (name, industry) VALUES 
+("Drake","Artist");
+INSERT INTO famous_people (name,industry) VALUES ("Tracee_Ellis_Ross", "Actress");
+INSERT INTO famous_people(name,industry) VALUES ("Talia_Hibbert","Author");
+INSERT INTO famous_people(name,industry) VALUES ("Ja_Morant","Athlete");
+
+CREATE TABLE hobbies (
+id INTEGER PRIMARY KEY,
+celebrity_id INTEGER,
+hobby TEXT);
+
+INSERT into hobbies(celebrity_id,hobby) VALUES ("1", "exercise");
+INSERT into hobbies(celebrity_id,hobby) VALUES ("1","fashion");
+INSERT into hobbies (celebrity_id,hobby) VALUES ("2","beauty");
+INSERT into hobbies (celebrity_id,hobby) VALUES ("2","fashion");
+INSERT into hobbies (celebrity_id,hobby) VALUES ("3","reading");
+INSERT into hobbies (celebrity_id,hobby) VALUES ("3","beauty");
+INSERT into hobbies (celebrity_id,hobby) VALUES ("4","fashion");
+
+CREATE TABLE age (
+id INTEGER PRIMARY KEY,
+celebrity_id INTEGER,
+age INTEGER);
+INSERT into age (celebrity_id,age) VALUES
+("1","37");
+INSERT into age (celebrity_id,age) VALUES ("2","51");
+INSERT into age (celebrity_id,age) VALUES ("4","24");
+
+/*What industry does each celebrity work in?*/
+
+SELECT fp.name,fp.industry
+FROM famous_people fp
+ORDER by name ASC;
+
+/*Which Celebrity is the oldest?*/
+SELECT fp.name, a.age
+FROM age a
+JOIN famous_people fp
+ON fp.id=a.celebrity_id
+ORDER by age ASC;
+
+
+/*What does each celebrity do in their free time?*/
+
+SELECT fp.name, h.hobby
+FROM famous_people fp
+JOIN hobbies h
+ON fp.id=h.celebrity_id;
+
+/* Which celebrites share a similar interest in fashion?*/
+SELECT fp.name AS celebrity_name
+FROM famous_people fp
+JOIN hobbies h ON fp.id=h.celebrity_id
+WHERE h.hobby="fashion";
+
