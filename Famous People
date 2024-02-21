@@ -1,4 +1,4 @@
-/* Create table about the people and what they do here */
+/* his analysis utilized the following Famous People dataset: */
 
 CREATE TABLE famous_people (
 id INTEGER PRIMARY KEY,
